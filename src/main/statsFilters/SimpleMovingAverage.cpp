@@ -1,5 +1,7 @@
 #include "SimpleMovingAverage.hpp"
 
+#include <cstring>
+
 using pasdam::statsFilters::SimpleMovingAverage;
 
 SimpleMovingAverage::SimpleMovingAverage(int windowSize)
@@ -10,6 +12,17 @@ SimpleMovingAverage::SimpleMovingAverage(int windowSize)
     , mWindowSize(windowSize)
 {
     mWindow = new double[windowSize];
+}
+
+SimpleMovingAverage::SimpleMovingAverage(const SimpleMovingAverage& other)
+    : mIndex(other.mIndex)
+    , mN(other.mN)
+    , mSum(other.mSum)
+    , mTotalSamples(other.mTotalSamples)
+    , mWindowSize(other.mWindowSize)
+{
+    mWindow = new double[other.mWindowSize];
+    memcpy(mWindow, other.mWindow, sizeof(double) * other.mWindowSize);
 }
 
 SimpleMovingAverage::~SimpleMovingAverage()

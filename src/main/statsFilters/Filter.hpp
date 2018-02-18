@@ -10,6 +10,8 @@ namespace statsFilters {
 class Filter
 {
 public:
+    virtual ~Filter() {}
+
     /**
      * @brief filter adds the sample to the serie and returns the filtered value
      * @param value sample to filter

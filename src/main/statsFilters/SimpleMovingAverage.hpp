@@ -9,8 +9,9 @@ namespace statsFilters {
 class SimpleMovingAverage: public Filter
 {
 public:
-    SimpleMovingAverage(int windowSize = 10);
-    ~SimpleMovingAverage();
+    explicit SimpleMovingAverage(int windowSize = 10);
+    explicit SimpleMovingAverage(const SimpleMovingAverage& other);
+    virtual ~SimpleMovingAverage();
 
     virtual double       filter(double value, long timestamp) override;
     virtual unsigned int getModelSamplesCount() const override;
